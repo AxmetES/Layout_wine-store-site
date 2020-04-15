@@ -35,9 +35,6 @@
       </div>
       <div class="site-mobile-menu-body"></div>
     </div>
-
-
-
     <div class="header-top">
       <div class="container">
         <div class="d-flex">
@@ -52,8 +49,6 @@
             </a>
           </div>
         </div>
-
-
       </div>
 
       <div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-md-block" role="banner">
@@ -70,17 +65,11 @@
                   <li><a href="#footer" class="nav-link text-left">Контакты</a></li>
                 </ul>
               </nav>
-
             </div>
-
           </div>
         </div>
-
       </div>
-
     </div>
-
-
     <div class="owl-carousel hero-slide owl-style">
       <div class="intro-section container" style="background-image: url('images/hero_1.jpg');">
         <div class="row justify-content-center text-center align-items-center">
@@ -90,7 +79,6 @@
           </div>
         </div>
       </div>
-
       <div class="intro-section container" style="background-image: url('images/hero_2.jpg');">
         <div class="row justify-content-center text-center align-items-center">
           <div class="col-md-8">
@@ -99,10 +87,7 @@
           </div>
         </div>
       </div>
-
     </div>
-
-
     <div><a id="products"></a></div>
     <div class="site-section">
       <div class="container">
@@ -114,20 +99,26 @@
           </div>
         </div>
         <div class="row">
-          {% for wine in wines %}
-          <div class="col-lg-4 mb-5 col-md-6">
-            <div class="wine_v_1 text-center pb-4 pt-5">
-              <img src="{{wine.Картинка}}" alt="Image" class="img-fluid">
-              <div>
-                <h3 class="heading mt-3 mb-3 text-dark">{{wine.Название}}</h3>
-                <p>
-                  Сорт винограда - {{wine.Сорт}}<br/>
-                  <span class="price">{{wine.Цена}}</span>
-                </p>
+        {% for wine in wines %}
+          <div class="col-12 section-title text-center mb-5">
+             <h2 class="d-block">{{wine}}</h2>
+          </div>
+          <div class="row">
+            {% for bottle in wines[wine] %}
+            <div class="col-lg-4 mb-5 col-md-6">
+              <div class="wine_v_1 text-center pb-4 pt-5">
+                <img src="images/{{bottle.Картинка}}" alt="Image" class="img-fluid">
+                  <div>
+                    <h3 class="heading mt-3 mb-3 text-dark">{{bottle.Название}}</h3>
+                    <p>Сорт винограда - {{bottle.Сорт}}<br/>
+                      <span class="price">{{bottle.Цена}}</span>
+                    </p>
+                  </div>
               </div>
             </div>
+            {% endfor %}
           </div>
-          {% endfor %}
+        {% endfor %}
         </div>
       </div>
     </div>

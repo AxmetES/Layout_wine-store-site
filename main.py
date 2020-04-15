@@ -1,3 +1,4 @@
+import collections
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 import datetime
 
@@ -10,10 +11,10 @@ env = Environment(
 )
 template = env.get_template('template.html')
 
-
 now = datetime.datetime.now()
 company_age = str(now.year - 1920)
 wines = loader()
+
 data_on_page = template.render(
     wines=wines,
     company_age=company_age
