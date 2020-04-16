@@ -4,7 +4,7 @@ import pprint
 
 
 def loader():
-    data = pd.read_excel('files/wine3.xlsx', force_ascii=False, na_values=['N/A', 'NA'], keep_default_na=False)
+    data = pd.read_excel('files/wine.xlsx', force_ascii=False, na_values=['N/A', 'NA'], keep_default_na=False)
     page_data = data.to_dict(orient='records')
 
     wines = {}
