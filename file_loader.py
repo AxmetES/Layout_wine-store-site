@@ -1,20 +1,25 @@
+from collections import defaultdict
 import pandas as pd
-import collections
-import pprint
+
+import argparse
+
+parser = argparse.ArgumentParser(description='wine information file')
+parser.add_argument('directory', type=str, help='Input file directory')
+args = parser.parse_args()
 
 
-def loader():
-    data = pd.read_excel('files/wine.xlsx', force_ascii=False, na_values=['N/A', 'NA'], keep_default_na=False)
-    page_data = data.to_dict(orient='records')
+def get_load(args):
+    data = pd.read_excel(args.directory + '/wine.xlsx', force_ascii=False, na_values=['N/A', 'NA'],
+                         keep_default_na=False)
+    drinks = data.to_dict(orient='records')
 
-    wines = {}
-    for data in page_data:
-        key = data['Категория']
-        if key in wines:
-            wines[key].append(data)
-        else:
-            wines[key] = [data]
+    wines = defaultdict(list)
+    for value in drinks:
+        key = value['Категория']
+        wines[key].append(value)
+
     return wines
 
 
-loader()
+if __name__ == '__main__':
+    print(get_load(args=args))
