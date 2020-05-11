@@ -2,7 +2,7 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 import datetime
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from file_loader import get_load, directory
+from file_loader import get_load, get_dir
 
 env = Environment(
     loader=FileSystemLoader('.'),
@@ -12,6 +12,7 @@ template = env.get_template('template.html')
 
 now = datetime.datetime.now()
 company_age = now.year - 1920
+directory = get_dir()
 wines = get_load(directory)
 
 html_page = template.render(

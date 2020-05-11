@@ -4,10 +4,12 @@ import os
 
 import argparse
 
-parser = argparse.ArgumentParser(description='wine information file')
-parser.add_argument('directory', type=str, help='Input file directory')
-args = parser.parse_args()
-directory = args.directory
+
+def get_dir():
+    parser = argparse.ArgumentParser(description='wine information file')
+    parser.add_argument('directory', type=str, help='Input file directory')
+    args = parser.parse_args()
+    return args.directory
 
 
 def get_load(file_directory):
@@ -15,12 +17,13 @@ def get_load(file_directory):
                          keep_default_na=False)
     drinks = data.to_dict(orient='records')
 
-    wines = defaultdict(list)
+    drinks_on_page = defaultdict(list)
     for drink in drinks:
-        key = drink['Категория']
-        wines[key].append(drink)
-    return wines
+        category = drink['Категория']
+        drinks_on_page[category].append(drink)
+    return drinks_on_page
 
 
 if __name__ == '__main__':
-    get_load(directory)
+    get_dir()
+    get_load()
